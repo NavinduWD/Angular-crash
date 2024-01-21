@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Task } from '../../task';
+import { Task } from '../../Task';
 import { TaskService } from '../../services/task.service';
 
 @Component({
@@ -23,5 +23,13 @@ export class TasksComponent {
       .subscribe(
         (task)=> this.tasks = this.tasks.filter((t) => t.id !== task.id)
       );
+  }
+
+  toggleReminder(task:Task): void {
+    task.reminder = !task.reminder;
+    this.taskService
+      .updateTask(task)
+      .subscribe();
+
   }
 }
