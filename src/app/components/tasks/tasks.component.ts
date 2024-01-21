@@ -30,6 +30,15 @@ export class TasksComponent {
     this.taskService
       .updateTask(task)
       .subscribe();
+  }
 
+  addTask(task: Task): void {
+    const id = this.tasks.length + 1;
+
+    const newTask = { id, ...task };
+
+    this.taskService
+      .saveTask(newTask)
+      .subscribe((task) => this.tasks.push(task));
   }
 }
